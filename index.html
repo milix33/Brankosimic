@@ -32,7 +32,12 @@
           <p class="hero-tagline">Majstor koji rješava kvarove – ne nagađa</p>
           <p class="hero-sub">Pouzdan automehaničarski servis u Prnjavoru. Dijagnostika, popravke i rješenja i rješenja za teške kvarove koje drugi ne znaju riješiti.</p>
           <div class="hero-cta">
-            <a href="tel:+38765265013" class="btn btn-primary">Pozovi odmah</a>
+            <a href="tel:+38765265013" class="btn btn-primary btn-call-single">Pozovi odmah</a>
+            <div class="call-options" aria-label="Način poziva">
+              <a href="tel:+38765265013" class="btn btn-call btn-call-tel">Poziv</a>
+              <a href="https://wa.me/38765265013" class="btn btn-call btn-call-wa" target="_blank" rel="noopener">WhatsApp</a>
+              <a href="viber://add?number=38765265013" class="btn btn-call btn-call-viber">Viber</a>
+            </div>
             <a href="#location" class="btn btn-secondary">Pronađi nas na mapi</a>
           </div>
         </div>
@@ -145,23 +150,39 @@
         <div class="contact-content">
           <h2 class="section-title">Pozovi – javi se čovjeku, ne centrali</h2>
           <p class="section-note">Nema call-centra. Nema posrednika. Javi se direktno majstoru.</p>
-          <a href="tel:+38765265013" class="btn btn-primary btn-large">Pozovi Branka</a>
+          <a href="tel:+38765265013" class="btn btn-primary btn-large btn-call-single">Pozovi Branka</a>
+          <div class="call-options call-options-contact" aria-label="Način poziva">
+            <a href="tel:+38765265013" class="btn btn-call btn-call-tel">Poziv</a>
+            <a href="https://wa.me/38765265013" class="btn btn-call btn-call-wa" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="viber://add?number=38765265013" class="btn btn-call btn-call-viber">Viber</a>
+          </div>
           <div class="contact-details">
             <p><strong>Auto-servis SIMIĆ</strong></p>
             <p>Donja Ilova bb, 78430 Prnjavor</p>
             <p><a href="tel:+38765265013">+387 65 265 013</a></p>
-            <a href="https://www.google.com/maps/search/Donja+Ilova+bb+Prnjavor" target="_blank" rel="noopener" class="btn btn-secondary">Otvori Google Maps</a>
           </div>
         </div>
       </div>
       <div class="map-wrap">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d180768.29975225485!2d17.589352029024276!3d44.93340740940694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ddd177a31ec19%3A0x8f8c9c2b4f9cfef3!2zQXV0by1zZXJ2aXMgIlNpbWnEhyI!5e0!3m2!1sen!2sba!4v1770390953338!5m2!1sen!2sba" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokacija Auto-servis SIMIĆ"></iframe>
       </div>
+      <p class="footer-inline">Kad ti treba rješenje – ne eksperiment. Auto-servis SIMIĆ.</p>
     </section>
-
-    <footer class="footer">
-      <p>Kad ti treba rješenje – ne eksperiment. Auto-servis SIMIĆ.</p>
-    </footer>
   </main>
+
+  <!-- Desktop: slide-in panel POZOVI (broj, kopiraj, QR) -->
+  <div class="call-panel-overlay" id="call-panel-overlay" aria-hidden="true">
+    <div class="call-panel" id="call-panel" role="dialog" aria-labelledby="call-panel-title" aria-modal="true">
+      <button type="button" class="call-panel-close" id="call-panel-close" aria-label="Zatvori">×</button>
+      <h2 class="call-panel-title" id="call-panel-title">Pozovi</h2>
+      <p class="call-panel-number" id="call-panel-number">+387 65 265 013</p>
+      <button type="button" class="btn btn-primary btn-copy" id="call-panel-copy">Kopiraj broj</button>
+      <div class="call-panel-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=tel%3A%2B38765265013" width="160" height="160" alt="QR kod za poziv">
+        <p class="call-panel-qr-label">Skeniraj da pozoveš sa telefona</p>
+      </div>
+    </div>
+  </div>
+  <script src="call-panel.js"></script>
 </body>
 </html>

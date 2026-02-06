@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -99,11 +100,14 @@ body {
   min-height: 100vh;
 }
 
-/* ─── Sections ───────────────────────────────────────────────────────────── */
+/* ─── Sections (scroll snap: svaka sekcija zalijepi se na ekran) ───────────── */
 .section {
   padding: var(--section-pad) 1.5rem;
   max-width: var(--max-width);
   margin: 0 auto;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .section-title {
@@ -263,6 +267,40 @@ body {
   min-height: 56px;
 }
 
+/* Na mobilu: tri opcije poziva (Poziv, WhatsApp, Viber) – na desktopu skriveno */
+.call-options {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.call-options .btn-call {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  font-size: 0.95rem;
+  padding: 0.75rem 0.5rem;
+}
+
+.btn-call-tel {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-call-tel:hover { background: var(--accent-hover); color: #fff; }
+
+.btn-call-wa {
+  background: #25d366;
+  color: #fff;
+}
+.btn-call-wa:hover { background: #20bd5a; color: #fff; }
+
+.btn-call-viber {
+  background: #7360f2;
+  color: #fff;
+}
+.btn-call-viber:hover { background: #8b7af5; color: #fff; }
+
 /* ─── Services, Why, Process, Contact – grid + Branko ────────────────────── */
 .section-inner {
   display: grid;
@@ -393,9 +431,20 @@ body {
   text-decoration: underline;
 }
 
-/* Map embed – responsive */
+/* Contact section – sve na jedan ekran (kontakt + mapa + footer tekst) */
+.section.contact {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--section-pad);
+}
+
+.contact .section-inner {
+  flex-shrink: 0;
+}
+
+/* Map embed – na laptopu veća, na mobilu manja */
 .map-wrap {
-  margin-top: 2rem;
+  margin-top: 1rem;
   width: 100%;
   max-width: var(--max-width);
   margin-left: auto;
@@ -403,26 +452,139 @@ body {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  flex: 1;
+  min-height: 0;
+  max-height: 38vh;
+}
+
+@media (min-width: 769px) {
+  .map-wrap {
+    max-height: 50vh;
+  }
 }
 
 .map-wrap iframe {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 280px;
-  aspect-ratio: 4 / 3;
+  min-height: 200px;
 }
 
-/* ─── Footer ────────────────────────────────────────────────────────────── */
-.footer {
+/* Footer poruka unutar posljednje sekcije (da se vidi uz scroll snap) */
+.footer-inline {
   text-align: center;
-  padding: 2rem 1.5rem;
+  margin: 1rem 0 0;
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted);
   font-size: 0.95rem;
+  flex-shrink: 0;
 }
 
-.footer p {
+/* ─── Desktop: slide-in panel POZOVI (samo desktop) ───────────────────────── */
+.call-panel-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.call-panel-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.call-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  background: var(--bg-anthracite);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.call-panel.is-open {
+  transform: translateX(0);
+}
+
+.call-panel-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.call-panel-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.call-panel-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 2rem 0 0.5rem;
+  color: var(--text);
+}
+
+.call-panel-number {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin: 0 0 1.25rem;
+}
+
+.call-panel .btn-copy {
+  width: 100%;
+  max-width: 260px;
+  margin-bottom: 2rem;
+}
+
+.call-panel-qr {
+  text-align: center;
+  margin-top: auto;
+  padding-bottom: 2rem;
+}
+
+.call-panel-qr img {
+  display: block;
+  margin: 0 auto 0.5rem;
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px;
+}
+
+.call-panel-qr-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -443,6 +605,19 @@ body {
 
   .hero-cta {
     justify-content: center;
+  }
+
+  .btn-call-single {
+    display: none !important;
+  }
+
+  .call-options {
+    display: flex;
+    width: 100%;
+  }
+
+  .call-options .btn-call {
+    min-height: 52px;
   }
 
   .hero-image-wrap {
@@ -475,6 +650,11 @@ body {
 
   .section-branko {
     max-height: 240px;
+  }
+
+  .map-wrap {
+    max-height: 26vh;
+    margin-top: 0.75rem;
   }
 
   .btn {
