@@ -32,6 +32,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-body);
   font-size: 1.05rem;
   color: var(--text);
@@ -98,6 +99,7 @@ body {
   position: relative;
   z-index: 1;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ─── Sections (scroll snap: svaka sekcija zalijepi se na ekran) ───────────── */
@@ -106,6 +108,7 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   min-height: 100vh;
+  min-height: 100dvh; /* mobil: ispravna visina kad se adresna traka skriva */
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -135,6 +138,7 @@ body {
 /* ─── Hero ───────────────────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   padding-top: 2rem;
@@ -590,6 +594,14 @@ body {
 
 /* ─── MOBILNI – CTA uvijek vidljiv, Branko ispod teksta ──────────────────── */
 @media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity; /* manje agresivno: ne zaglavi na pola sekcije kad ideš gore */
+  }
+
+  .section {
+    scroll-snap-stop: normal; /* omogući da se lijepo zalijepi i pri skrolu nagore */
+  }
+
   .bg-layer.overlay {
     background: rgba(0, 0, 0, 0.68);
   }
