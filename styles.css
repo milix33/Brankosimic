@@ -649,14 +649,14 @@ body {
   .why-content,
   .process-content,
   .contact-content {
-    order: 2;
+    order: 1;
   }
 
   .services-image-wrap,
   .why-image-wrap,
   .process-image-wrap,
   .contact-image-wrap {
-    order: 1;
+    order: 2;
     max-height: 260px;
   }
 
