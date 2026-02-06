@@ -426,8 +426,8 @@ body {
   gap: 0.6rem;
   padding-left: 0;
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 .service-card.is-visible {
   opacity: 1;
@@ -449,13 +449,13 @@ body {
   height: 100%;
 }
 
-/* WHY US: type-in cursor (blink) – desktop / blago */
-.why-type-in .type-in-cursor {
+/* Type-in cursor (blink) – Services + Why Us, na mobilu blago */
+.type-in .type-in-cursor {
   opacity: 1;
   animation: cursor-blink 0.9s step-end infinite;
 }
 @media (max-width: 768px) {
-  .why-type-in .type-in-cursor { animation: none; opacity: 0.6; }
+  .type-in .type-in-cursor { animation: none; opacity: 0.6; }
 }
 @keyframes cursor-blink {
   0%, 50% { opacity: 1; }

@@ -11,20 +11,22 @@
   }, revealOpts);
   reveal.forEach(function (el) { revealObs.observe(el); });
 
-  // ─── SERVICES: stagger ulaz kartica kad sekcija uđe u view ──────────────
+  // ─── SERVICES (Šta radimo): kartice ulaze jedna po jedna (stagger) u view ─
   var servicesSection = document.querySelector('#services');
   var serviceCards = document.querySelectorAll('.service-card');
+  var staggerDone = false;
   if (servicesSection && serviceCards.length) {
     var staggerObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
+        if (!entry.isIntersecting || staggerDone) return;
+        staggerDone = true;
         serviceCards.forEach(function (card, i) {
           setTimeout(function () {
             card.classList.add('is-visible');
-          }, 80 * i);
+          }, 120 * i);
         });
       });
-    }, { rootMargin: '0px 0px -5% 0px', threshold: 0 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
     staggerObs.observe(servicesSection);
   }
 
@@ -53,34 +55,33 @@
     updateProcessProgress();
   }
 
-  // ─── WHY US: type-in samo jedna rečenica (desktop ili blago na mobilu) ──
-  var typeInEl = document.querySelector('.why-type-in[data-type-in]');
-  if (typeInEl) {
-    var textEl = typeInEl.querySelector('.type-in-text');
-    var cursorEl = typeInEl.querySelector('.type-in-cursor');
-    var fullText = typeInEl.getAttribute('data-type-in') || '';
-    var isDesktop = window.matchMedia('(min-width: 769px)').matches;
-    var delay = isDesktop ? 45 : 25;
-    var runOnce = false;
-    var typeInObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting || runOnce || !textEl) return;
-        runOnce = true;
-        var i = 0;
-        textEl.textContent = '';
-        if (cursorEl) cursorEl.style.visibility = 'visible';
-        function type() {
-          if (i < fullText.length) {
-            textEl.textContent += fullText[i];
-            i++;
-            setTimeout(type, delay);
-          } else if (cursorEl) {
-            setTimeout(function () { cursorEl.style.visibility = 'hidden'; }, 400);
-          }
+  // ─── Type-in: ispis rečenice kad element uđe u view, ukupno 2 sec ───────
+  var typeInEls = document.querySelectorAll('.type-in[data-type-in]');
+  var typeInDuration = 2000;
+  var typeInObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var el = entry.target;
+      if (!entry.isIntersecting || el.dataset.typed === '1') return;
+      el.dataset.typed = '1';
+      var textEl = el.querySelector('.type-in-text');
+      var cursorEl = el.querySelector('.type-in-cursor');
+      var fullText = el.getAttribute('data-type-in') || '';
+      if (!textEl || !fullText.length) return;
+      var delay = typeInDuration / fullText.length;
+      textEl.textContent = '';
+      if (cursorEl) cursorEl.style.visibility = 'visible';
+      var i = 0;
+      function type() {
+        if (i < fullText.length) {
+          textEl.textContent += fullText[i];
+          i++;
+          setTimeout(type, delay);
+        } else if (cursorEl) {
+          setTimeout(function () { cursorEl.style.visibility = 'hidden'; }, 400);
         }
-        setTimeout(type, 300);
-      });
-    }, { threshold: 0.3 });
-    typeInObs.observe(typeInEl);
-  }
+      }
+      setTimeout(type, 300);
+    });
+  }, { threshold: 0.3 });
+  typeInEls.forEach(function (el) { typeInObs.observe(el); });
 })();
