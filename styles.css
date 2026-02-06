@@ -1,0 +1,482 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   AUTO-SERVIS SIMIĆ – Premium dark theme, red accent
+   Layer order: bg image → overlay → vignette → flare → noise → content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg-dark: #0d0d0d;
+  --bg-anthracite: #1a1a1c;
+  --overlay: rgba(0, 0, 0, 0.72);
+  --accent: #c9302c;
+  --accent-hover: #e63935;
+  --accent-soft: rgba(201, 48, 44, 0.25);
+  --text: #f0f0f0;
+  --text-muted: #b0b0b0;
+  --font-head: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --section-pad: clamp(2rem, 5vw, 4rem);
+  --max-width: 1100px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text);
+  background: var(--bg-dark);
+  position: relative;
+}
+
+/* ─── Background layers (fixed, full viewport) ───────────────────────────── */
+.bg-layers {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* 1) Pozadinska slika – radionica, uvećana + blur */
+.bg-layer.bg-image {
+  background-image: url("public/images/bg/Pozadinska slika.png");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  filter: blur(12px);
+}
+
+/* 2) Tamni overlay – čitljivost teksta */
+.bg-layer.overlay {
+  background: var(--overlay);
+}
+
+/* 3) Vignette – tamni rubovi, fokus u sredini */
+.bg-layer.vignette {
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.5) 70%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+/* 4) Light flare – meko svjetlo (gore desno) */
+.bg-layer.flare {
+  background: radial-gradient(
+    ellipse 100% 100% at 85% 15%,
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 50%
+  );
+}
+
+/* 5) Noise – grain, ispod teksta */
+.bg-layer.noise {
+  background-image: url("public/images/textures/noise.png");
+  background-repeat: repeat;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Content (iznad svih slojeva) ───────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* ─── Sections ───────────────────────────────────────────────────────────── */
+.section {
+  padding: var(--section-pad) 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.section-lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
+}
+
+.section-note {
+  color: var(--text-muted);
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-text {
+  max-width: 32rem;
+}
+
+.hero-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.hero-tagline {
+  font-family: var(--font-head);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.hero-sub {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.hero-branko {
+  max-height: 75vh;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.hero-placeholder,
+.section-placeholder {
+  display: none;
+  min-height: 280px;
+  background: var(--accent-soft);
+  border: 2px dashed var(--accent);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Kad Branko slika ne učitava (onerror), prikaži placeholder */
+.hero-image-wrap:has(.hero-branko[style*="none"]) .hero-placeholder,
+.services-image-wrap:has(.section-branko[style*="none"]) .section-placeholder,
+.why-image-wrap:has(.section-branko[style*="none"]) .section-placeholder,
+.process-image-wrap:has(.section-branko[style*="none"]) .section-placeholder,
+.contact-image-wrap:has(.section-branko[style*="none"]) .section-placeholder {
+  display: flex;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  min-height: 48px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--text-muted);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  min-height: 56px;
+}
+
+/* ─── Services, Why, Process, Contact – grid + Branko ────────────────────── */
+.section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.services-image-wrap,
+.why-image-wrap,
+.process-image-wrap,
+.contact-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.section-branko {
+  max-height: 420px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.services-content { order: 2; }
+.services-image-wrap { order: 1; }
+
+.why-content { order: 2; }
+.why-image-wrap { order: 1; }
+
+.process-content { order: 2; }
+.process-image-wrap { order: 1; }
+
+.contact-content { order: 2; }
+.contact-image-wrap { order: 1; }
+
+/* Lists */
+.check-list,
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.check-list li,
+.bullet-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.45;
+}
+
+.check-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.steps-list {
+  padding-left: 1.25rem;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.steps-list li {
+  margin-bottom: 0.35rem;
+}
+
+.why-quote {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 1.25rem 0 0;
+  font-style: normal;
+}
+
+/* ─── Gallery ────────────────────────────────────────────────────────────── */
+.gallery-inner {
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-slot {
+  aspect-ratio: 4/3;
+  background: var(--accent-soft);
+  border: 2px dashed rgba(201, 48, 44, 0.5);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 1rem;
+}
+
+/* ─── Contact ────────────────────────────────────────────────────────────── */
+.contact-details {
+  margin-top: 1.5rem;
+}
+
+.contact-details p {
+  margin: 0.35rem 0;
+}
+
+.contact-details a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Footer ────────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ─── MOBILNI – CTA uvijek vidljiv, Branko ispod teksta ──────────────────── */
+@media (max-width: 768px) {
+  .bg-layer.overlay {
+    background: rgba(0, 0, 0, 0.68);
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: none;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-image-wrap {
+    max-height: 40vh;
+  }
+
+  .hero-branko {
+    max-height: 38vh;
+  }
+
+  .section-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .services-content,
+  .why-content,
+  .process-content,
+  .contact-content {
+    order: 2;
+  }
+
+  .services-image-wrap,
+  .why-image-wrap,
+  .process-image-wrap,
+  .contact-image-wrap {
+    order: 1;
+    max-height: 260px;
+  }
+
+  .section-branko {
+    max-height: 240px;
+  }
+
+  .btn {
+    min-height: 52px;
+    padding: 1rem 1.25rem;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
