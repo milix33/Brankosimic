@@ -25,14 +25,14 @@
     <!-- HERO – "MAJSTOR" – Branko stoji, alat, ozbiljan -->
     <!-- Placeholder: hero-branko.png (transparent) – desktop: pored teksta, mobil: ispod naslova/dugmadi -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <header class="section hero" id="hero">
+    <header class="section hero reveal" id="hero">
       <div class="hero-inner">
         <div class="hero-text">
           <h1 class="hero-title">AUTO-SERVIS SIMIĆ</h1>
           <p class="hero-tagline">Majstor koji rješava kvarove – ne nagađa</p>
           <p class="hero-sub">Pouzdan automehaničarski servis u Prnjavoru. Dijagnostika, popravke i rješenja i rješenja za teške kvarove koje drugi ne znaju riješiti.</p>
           <div class="hero-cta">
-            <a href="tel:+38765265013" class="btn btn-primary btn-call-single">Pozovi odmah</a>
+            <a href="tel:+38765265013" class="btn btn-primary btn-call-single btn-sweep">Pozovi odmah</a>
             <div class="call-options" aria-label="Način poziva">
               <a href="tel:+38765265013" class="btn btn-call btn-call-tel">Poziv</a>
               <a href="https://wa.me/38765265013" class="btn btn-call btn-call-wa" target="_blank" rel="noopener">WhatsApp</a>
@@ -53,7 +53,7 @@
     <!-- SERVICES – "RADNIK" – Branko nad motorom, dijagnostika -->
     <!-- Placeholder: services-branko.png -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section class="section services" id="services">
+    <section class="section services reveal" id="services">
       <div class="section-inner">
         <div class="services-image-wrap">
           <img src="public/images/branko/services-branko.png" alt="Branko – dijagnostika i popravka" class="section-branko" width="350" height="500" onerror="this.style.display='none'">
@@ -62,13 +62,13 @@
         <div class="services-content">
           <h2 class="section-title">Šta radimo</h2>
           <p class="section-lead">Sve na jednom mjestu – bez zavlačenja</p>
-          <ul class="check-list">
-            <li>Dijagnostika svih sistema</li>
-            <li>Mehanički i elektronski kvarovi</li>
-            <li>Popravke motora i pogonskih sistema</li>
-            <li>Kočnice, ovjes, upravljanje</li>
-            <li>Servisi i redovno održavanje</li>
-            <li>Rješavanje "teških" kvarova koje drugi ne uspiju</li>
+          <ul class="check-list service-cards">
+            <li class="service-card"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 7a2 2 0 012 2m-2 2a2 2 0 01-2-2m2 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2h2"/><path d="M12 12v3M12 8v1M12 16v1"/></svg></span>Dijagnostika svih sistema</li>
+            <li class="service-card"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg></span>Mehanički i elektronski kvarovi</li>
+            <li class="service-card"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>Popravke motora i pogonskih sistema</li>
+            <li class="service-card"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>Kočnice, ovjes, upravljanje</li>
+            <li class="service-card"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg></span>Servisi i redovno održavanje</li>
+            <li class="service-card"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>Rješavanje "teških" kvarova koje drugi ne uspiju</li>
           </ul>
           <p class="section-note">Ne mijenjamo dijelove napamet. Prvo pronađemo uzrok – onda popravljamo kako treba.</p>
         </div>
@@ -79,7 +79,7 @@
     <!-- WHY US – "TEŠKA MISIJA" – Branko + simbol (motor/turbina/ECU) -->
     <!-- Placeholder: why-branko.png -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section class="section why" id="why">
+    <section class="section why reveal" id="why">
       <div class="section-inner why-inner">
         <div class="why-image-wrap">
           <img src="public/images/branko/why-branko.png" alt="Branko – teški kvarovi" class="section-branko" width="350" height="500" onerror="this.style.display='none'">
@@ -87,7 +87,7 @@
         </div>
         <div class="why-content">
           <h2 class="section-title">Zašto baš Branko?</h2>
-          <p class="section-lead">Kad drugi kažu „ne može“ – mi tek počinjemo.</p>
+          <p class="section-lead why-type-in" data-type-in="Kad drugi kažu „ne može“ – mi tek počinjemo."><span class="type-in-text"></span><span class="type-in-cursor" aria-hidden="true">|</span></p>
           <p class="section-note">Iskustvo, dijagnostika i logika rješavaju i najteže kvarove.</p>
           <ul class="bullet-list">
             <li>Iskustvo, ne pretpostavke</li>
@@ -103,7 +103,7 @@
     <!-- HOW WE WORK – "PROCES" – Branko objašnjava klijentu -->
     <!-- Placeholder: process-branko.png -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section class="section process" id="process">
+    <section class="section process reveal" id="process">
       <div class="section-inner">
         <div class="process-image-wrap">
           <img src="public/images/branko/process-branko.png" alt="Branko – kako radimo" class="section-branko" width="350" height="500" onerror="this.style.display='none'">
@@ -111,13 +111,16 @@
         </div>
         <div class="process-content">
           <h2 class="section-title">Kako radimo</h2>
-          <ol class="steps-list">
-            <li>Dolazak i pregled vozila</li>
-            <li>Dijagnostika i objašnjenje kvara</li>
-            <li>Dogovor oko rješenja</li>
-            <li>Popravka bez skrivenih troškova</li>
-            <li>Vozilo spremno i sigurno</li>
-          </ol>
+          <div class="process-steps">
+            <div class="process-progress-track" aria-hidden="true"><div class="process-progress-fill" id="process-progress-fill"></div></div>
+            <ol class="steps-list">
+              <li class="process-step">Dolazak i pregled vozila</li>
+              <li class="process-step">Dijagnostika i objašnjenje kvara</li>
+              <li class="process-step">Dogovor oko rješenja</li>
+              <li class="process-step">Popravka bez skrivenih troškova</li>
+              <li class="process-step">Vozilo spremno i sigurno</li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
@@ -125,7 +128,7 @@
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- GALLERY – Radionica & rad (slike kasnije) -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section class="section gallery" id="gallery">
+    <section class="section gallery reveal" id="gallery">
       <div class="section-inner gallery-inner">
         <h2 class="section-title">Radionica & rad</h2>
         <p class="section-lead">Ovdje se radi.</p>
@@ -141,7 +144,7 @@
     <!-- LOCATION & CONTACT – "POZIV" – Branko, telefon -->
     <!-- Placeholder: contact-branko.png -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section class="section contact" id="location">
+    <section class="section contact reveal" id="location">
       <div class="section-inner contact-inner">
         <div class="contact-image-wrap">
           <img src="public/images/branko/contact-branko.png" alt="Pozovi Branka" class="section-branko" width="350" height="500" onerror="this.style.display='none'">
@@ -150,7 +153,7 @@
         <div class="contact-content">
           <h2 class="section-title">Pozovi – javi se čovjeku, ne centrali</h2>
           <p class="section-note">Nema call-centra. Nema posrednika. Javi se direktno majstoru.</p>
-          <a href="tel:+38765265013" class="btn btn-primary btn-large btn-call-single">Pozovi Branka</a>
+          <a href="tel:+38765265013" class="btn btn-primary btn-large btn-call-single btn-sweep btn-pulse-hover">Pozovi Branka</a>
           <div class="call-options call-options-contact" aria-label="Način poziva">
             <a href="tel:+38765265013" class="btn btn-call btn-call-tel">Poziv</a>
             <a href="https://wa.me/38765265013" class="btn btn-call btn-call-wa" target="_blank" rel="noopener">WhatsApp</a>
@@ -184,5 +187,6 @@
     </div>
   </div>
   <script src="call-panel.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>
