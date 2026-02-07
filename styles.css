@@ -969,6 +969,12 @@ body {
     display: flex !important;
     justify-content: center;
     align-items: center;
+    width: 3.25rem !important;
+    min-height: 3.25rem !important;
+    max-width: none !important;
+    padding: 0 !important;
+    bottom: 1rem;
+    right: 1rem;
   }
 
   body {
