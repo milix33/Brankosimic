@@ -654,18 +654,26 @@ body {
   padding-left: 0;
 }
 
-/* Sticky dugme mobil: Šlep / pomoć na putu – samo mobil, fiksirano dole */
+/* Sticky mobil: mala slušalica desno – pomoć na putu */
 .slep-sticky-btn {
   display: none;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 1rem;
+  right: 1rem;
+  left: auto;
+  width: 3.25rem;
+  height: 3.25rem;
+  min-height: 3.25rem;
+  padding: 0;
   z-index: 100;
-  border-radius: 0;
-  min-height: 56px;
-  font-size: 1.05rem;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  align-items: center;
+  justify-content: center;
+}
+.slep-sticky-icon {
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
 /* ─── Gallery ────────────────────────────────────────────────────────────── */
@@ -964,7 +972,7 @@ body {
   }
 
   body {
-    padding-bottom: 64px;
+    padding-bottom: 0;
   }
 }
 
